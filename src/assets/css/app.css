@@ -1,0 +1,182 @@
+     @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+     :root {
+       --primary-100: #F26CF9;
+       --primary-90: #F589FA;
+       --primary-90-o10: #f489fa1A;
+       --primary-50: #FCD3FE;
+       --primary-40: #FCE2FE;
+       --primary-30: #FDEDFE;
+       --secondary-110: #1C2346;
+       --secondary-100: #37437D;
+       --secondary-90: #5562A2;
+       --secondary-70: #707DBF;
+       --secondary-60: #ABB4DD;
+       --secondary-50: #D3DAF9;
+       --yellow-100: #FFCA39;
+       --yellow-90: #FFEFC3;
+       --gray-10: #FFFFFF;
+       --gray-20: #F7F7F7;
+       --gray-30: #EDEDED;
+       --gray-40: #E0E0E1;
+       --gray-50: #C3C3C4;
+       --gray-60: #9F9FA1;
+       --gray-70: #777779;
+       --gray-80: #636365;
+       --gray-90: #434345;
+       --gray-100: #1E1E20;
+       --cool-10: #EEEFFF;
+       --cool-20: #E4E5F5;
+       --cool-30: #DDDEED;
+       --cool-40: #D1D2E0;
+       --cool-50: #B0B1BD;
+       --cool-60: #8F8F99;
+       --cool-70: #72737A;
+       --cool-80: #56565C;
+       --cool-90: #39393D;
+       --cool-100: #131314;
+       --cool-100-o10: #1313141A;
+
+       --title-18: 18px;
+       --title-16: 16px;
+       --title-14: 14px;
+       --title-12: 12px;
+       --title-11: 11px;
+       --title-10: 10px;
+       --title-9: 9px;
+       --title-8: 8px;
+       --body-16: 16px;
+       --body-14: 14px;
+       --body-12: 12px;
+       --body-11: 11px;
+       --body-10: 10px;
+       --btn-14: 14px;
+       --btn-12: 12px;
+       --btn-10: 10px;
+
+       --font: "Inter", sans-serif;
+       --text-color: var(--gray-100);
+       --text-color-header: var(--secondary-100);
+       --text-color-greating: var(--gray-70);
+       --bg-color: var(--gray-10);
+       --bg-nav: var(--cool-10);
+       --bg-footer: var(--gray-20);
+       --bg-footer-mobil: var(--bg-color);
+       --bg-header: var(--gray-20);
+       --bg-main: var(--gray-20);
+       --bg-signout: var(--cool-20);
+       --bg-event-preview: var(--gray-40);
+       --bg-card: var(--gray-10);
+
+       --icon-color: var(--secondary-100);
+       --icon-color-hover: var(--gray-10);
+       --icon-color-active: var(--gray-10);
+       --logo-color-text: var(--secondary-110);
+       --nav-link-hover: var(--primary-90-o10);
+       --nav-link-active: var(--primary-100);
+       --footer-link: var(--gray-50);
+       --footer-header: var(--gray-70);
+     }
+
+     *,
+     *::before,
+     *::after {
+       box-sizing: border-box;
+       margin: 0;
+       padding: 0;
+     }
+
+     body {
+       font-family: var(--font);
+       font-weight: 400;
+       font-size: 1rem;
+       color: var(--text-color);
+       background-color: var(--bg-color);
+     }
+
+     a {
+       text-decoration: none;
+       color: unset;
+     }
+
+     .wrapper {
+       display: grid;
+       max-width: 366px;
+       margin: auto;
+       grid-template-areas: "nav" "main" "footer";
+       grid-template-rows: auto 1fr auto;
+       min-height: 100dvh;
+       padding-block: .75rem;
+       gap: .75rem;
+
+       @media (width >=768px) {
+         max-width: 776px;
+         grid-template-columns: 4.5rem 1fr;
+         grid-template-areas: "nav header" "nav main" "nav footer";
+       }
+
+       @media (width >=1400px) {
+         max-width: 1440px;
+         grid-template-columns: 14rem 1fr;
+         grid-template-areas: "nav header" "nav main" "nav footer";
+       }
+     }
+
+     .show-mobile {
+       display: block;
+
+       @media (width > 768px) {
+         display: none;
+       }
+     }
+
+     .hidden {
+       display: none;
+     }
+
+     nav {
+       grid-area: nav;
+     }
+
+     header {
+       grid-area: header;
+       display: none;
+
+       @media (width >=768px) {
+         display: unset;
+       }
+     }
+
+     main {
+       grid-area: main;
+       background-color: var(--bg-main);
+       border-radius: 1rem;
+     }
+
+     footer {
+       grid-area: footer;
+     }
+
+     h1 {
+       font-size: 32px;
+     }
+
+     h2 {
+       font-size: 28px;
+     }
+
+     h3 {
+       font-size: 26px;
+     }
+
+     h4 {
+       font-size: 24px;
+     }
+
+     h5 {
+       font-size: 22px;
+     }
+
+     h6 {
+       font-size: 20px;
+     }

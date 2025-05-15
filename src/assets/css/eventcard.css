@@ -1,0 +1,15 @@
+.event-card {
+  width: 334px;
+  height: 346px;
+  background-color: var(--bg-card);
+  border-radius: .75rem;
+  display: grid;
+  margin-inline: auto;
+  padding: .75rem;
+}
+.event-preview{
+  width: 310px;
+  height: 209px;
+  background-color: var(--bg-event-preview);
+  border-radius: .75rem;
+}

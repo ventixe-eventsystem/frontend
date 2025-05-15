@@ -1,0 +1,32 @@
+.profile-info {
+  display: flex;
+  gap: .75rem;
+  align-items: center;
+}
+
+.profile-img {
+  height: 40px;
+  width: 40px;
+  background-color: aqua;
+  border-radius: 50%;
+}
+
+.name-role-container {
+  @media (width >= 768px){
+    display: none;
+  }
+  @media (width >= 1400px){
+    display: unset;
+  }
+}
+
+.fullname {
+  font-size: var(--title-14);
+  color: var(--secondary-110);
+  font-weight: 600;
+}
+
+.user-role {
+  font-size: var(--title-11);
+  color: var(--gray-70);
+}

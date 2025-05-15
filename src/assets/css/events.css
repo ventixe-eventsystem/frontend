@@ -1,0 +1,11 @@
+.events-options{
+  display: grid;
+  width: 334px;
+  grid-template-columns: repeat(3, 1fr);
+  row-gap: .75rem;
+  margin-inline: auto;
+  padding-block: 1rem 1.5rem;
+}
+.search-event {
+  grid-column: 1 / -1;
+}
