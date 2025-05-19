@@ -58,6 +58,10 @@
        --text-color: var(--gray-100);
        --text-color-header: var(--secondary-100);
        --text-color-greating: var(--gray-70);
+       --text-color-seating: var(--gray-80);
+       --text-color-packages: var(--gray-100);
+       --text-color-packages-price: var(--primary-100);
+
        --bg-color: var(--gray-10);
        --bg-nav: var(--cool-10);
        --bg-footer: var(--gray-20);
@@ -67,8 +71,11 @@
        --bg-signout: var(--cool-20);
        --bg-event-preview: var(--gray-40);
        --bg-card: var(--gray-10);
+       --bg-packages: var(--gray-10);
+       --bg-packages-li: var(--gray-20);
 
        --icon-color: var(--secondary-100);
+       --icon-color-checkmark: var(--gray-50);
        --icon-color-hover: var(--gray-10);
        --icon-color-active: var(--gray-10);
        --logo-color-text: var(--secondary-110);

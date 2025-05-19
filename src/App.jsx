@@ -6,6 +6,7 @@ import Bookings from './pages/Bookings.jsx'
 import AuthLayout from './layouts/authLayout'
 import PortalLayout from './layouts/portalLayout'
 import Events from './pages/Events.jsx'
+import EventDetails from './pages/EventDetails.jsx'
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
           <Route path='/dashboard' element={<Dashboard />} />
           <Route path='/bookings' element={<Bookings />} />
           <Route path='/events' element={<Events />} />
+          <Route path='/events/:eventId' element={<EventDetails />} />
         </Route>
       </Routes>
     </BrowserRouter>

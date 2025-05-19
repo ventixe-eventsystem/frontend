@@ -1,0 +1,61 @@
+.packages {
+  background-color: var(--bg-packages);
+  padding: 1rem;
+  display: grid;
+  gap: 1.25rem;
+}
+
+.packages-header {
+  font-size: var(--title-16);
+  font-weight: 600;
+}
+
+.packages-ul {
+  list-style: none;
+  background-color: var(--bg-packages);
+  display: grid;
+  gap: .75rem;
+}
+
+.packages-li {
+  background-color: var(--bg-packages-li);
+  display: grid;
+  padding: 1rem;
+  border-radius: 1rem;
+  gap: .625rem;
+}
+
+.li-flex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.li-flex p {
+  font-weight: 600;
+  color: var(--text-color-packages)
+}
+
+.li-flex span {
+  font-weight: 600;
+  color: var(--text-color-packages-price)
+}
+
+.li-seating {
+  display: flex;
+  gap: 1rem;
+}
+
+.li-seating p {
+  font-size: var(--title-12);
+  color: var(--text-color-seating);
+  display: flex;
+  gap: 4px;
+}
+
+.li-seating p::before {
+  content: "";
+  background-image: url('/src/assets/icons/checkcircle.svg');
+  width: 14px;
+  height: 14px;
+  color: var(--icon-color-checkmark);
+}
