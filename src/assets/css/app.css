@@ -73,6 +73,7 @@
        --bg-card: var(--gray-10);
        --bg-packages: var(--gray-10);
        --bg-packages-li: var(--gray-20);
+       --bg-event-details: var(--gray-10);
 
        --icon-color: var(--secondary-100);
        --icon-color-checkmark: var(--gray-50);
@@ -83,6 +84,7 @@
        --nav-link-active: var(--primary-100);
        --footer-link: var(--gray-50);
        --footer-header: var(--gray-70);
+       --line-break: var(--gray-30);
      }
 
      *,
@@ -127,6 +129,12 @@
          grid-template-columns: 14rem 1fr;
          grid-template-areas: "nav header" "nav main" "nav footer";
        }
+     }
+
+     .inner-wrapper{
+      padding: 1rem;
+      background-color: var(--gray-20);
+      border-radius: 1rem;
      }
 
      .show-mobile {

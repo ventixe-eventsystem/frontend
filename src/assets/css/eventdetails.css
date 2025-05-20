@@ -1,0 +1,29 @@
+.space {
+  display: grid;
+  gap: 1.5rem
+}
+
+.preview-event {
+  width: 334px;
+  height: 200px;
+  background-color: var(--gray-40);
+  border-radius: 1rem 1rem 0 0;
+}
+
+.event-info-details {
+  background-color: var(--bg-event-details);
+  padding: 1rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.details-title {
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+/* .details-location {} */
+
+.details-line {
+  border-bottom: 1px solid var(--line-break);
+}

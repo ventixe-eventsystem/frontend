@@ -7,6 +7,7 @@ import AuthLayout from './layouts/authLayout'
 import PortalLayout from './layouts/portalLayout'
 import Events from './pages/Events.jsx'
 import EventDetails from './pages/EventDetails.jsx'
+import EventBooking from './pages/EventBooking.jsx'
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
           <Route path='/bookings' element={<Bookings />} />
           <Route path='/events' element={<Events />} />
           <Route path='/events/:eventId' element={<EventDetails />} />
+          <Route path='/event/:eventId' element={<EventBooking />}/>
         </Route>
       </Routes>
     </BrowserRouter>
