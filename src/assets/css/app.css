@@ -61,6 +61,7 @@
        --text-color-seating: var(--gray-80);
        --text-color-packages: var(--gray-100);
        --text-color-packages-price: var(--primary-100);
+       --text-color-no-account: var(--gray-70);
 
        --bg-color: var(--gray-10);
        --bg-nav: var(--cool-10);
@@ -68,12 +69,15 @@
        --bg-footer-mobil: var(--bg-color);
        --bg-header: var(--gray-20);
        --bg-main: var(--gray-20);
+       --bg-main-auth: var(--gray-10);
        --bg-signout: var(--cool-20);
        --bg-event-preview: var(--gray-40);
        --bg-card: var(--gray-10);
        --bg-packages: var(--gray-10);
        --bg-packages-li: var(--gray-20);
        --bg-event-details: var(--gray-10);
+       --bg-confirm-message: var(--gray-20);
+       --bg-signin-form: var(--gray-10);
 
        --icon-color: var(--secondary-100);
        --icon-color-checkmark: var(--gray-50);
@@ -129,6 +133,12 @@
          grid-template-columns: 14rem 1fr;
          grid-template-areas: "nav header" "nav main" "nav footer";
        }
+     }
+
+     .auth-wrapper{
+      display: grid;
+      place-content: center;
+      min-height: 100dvh;
      }
 
      .inner-wrapper{

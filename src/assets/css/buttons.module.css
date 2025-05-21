@@ -1,0 +1,24 @@
+.primary {
+  background-color: var(--primary-100);
+  color: var(--gray-10);
+  padding: 10px 1rem;
+  border: none;
+  border-radius: 1rem;
+  transition: background-color .1s ease;
+  cursor: pointer;
+  font-weight: 500;
+  font-family: var(--font);
+}
+
+.primary:hover{
+  background-color: var(--cool-10);
+  color: var(--secondary-100);
+}
+
+.fullWidth{
+  width: 100%;
+}
+
+.centerXY{
+  margin: auto;
+}

@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom'
 import './assets/css/App.css'
-import Login from './pages/Login.jsx'
+import SignIn from './pages/SignIn.jsx'
+import SignUp from './pages/SignUp.jsx'
 import Dashboard from './pages/Dashboard.jsx'
 import Bookings from './pages/Bookings.jsx'
 import AuthLayout from './layouts/authLayout'
@@ -16,7 +17,8 @@ function App() {
       <Routes>
         <Route element={<AuthLayout />}>
           <Route path='/' element={<Navigate to='/login' replace />} />
-          <Route path='/login' element={<Login />} />
+          <Route path='/login' element={<SignIn />} />
+          <Route path='/signup' element={<SignUp />} />
         </Route>
 
         <Route element={<PortalLayout />}>

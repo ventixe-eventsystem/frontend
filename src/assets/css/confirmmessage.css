@@ -1,0 +1,23 @@
+.message-container {
+  background-color: var(--bg-confirm-message);
+  inset: 0;
+  position: absolute;
+  z-index: 10;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  place-content: center;
+  gap: 1rem;
+}
+
+.success-img {
+  height: 7rem;
+  width: 7rem;
+  color: green;
+  margin:auto;
+}
+
+.success-info span {
+  color: var(--primary-100);
+}

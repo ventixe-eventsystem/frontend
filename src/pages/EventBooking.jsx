@@ -1,12 +1,15 @@
-import React, { use, useEffect, useState } from 'react'
+import '../assets/css/eventbooking.css'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { getEvent } from '../assets/services/eventService'
 import { createBooking } from '../assets/services/bookingService'
+import ConfirmMessage from '../assets/components/ConfirmMessage'
 
 const EventBooking = () => {
   const { eventId } = useParams()
+  const [message, setMessage] = useState(false)
   const [event, setEvent] = useState({})
-  const [formFata, setFormData] = useState({
+  const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
     email: '',
@@ -34,7 +37,7 @@ const EventBooking = () => {
 
     const updatedEvent = {
       ...rest,
-      ...formFata,
+      ...formData,
       bookingDate: now,
       eventId: event.id
     }
@@ -42,6 +45,7 @@ const EventBooking = () => {
       const success = createBooking(updatedEvent)
 
       if (!success) throw new Error("Faild to create booking")
+      setMessage(true)
     }
     catch (error) {
       console.log(error)
@@ -53,7 +57,7 @@ const EventBooking = () => {
   }, [eventId])
 
   return (
-    <div>
+    <div className='eventbooking-container'>
       <h6>Book event - {event.name}</h6>
       <div>
         <form onSubmit={handleSubmit}>
@@ -77,6 +81,8 @@ const EventBooking = () => {
           <button type='submit'>Confirm</button>
         </form>
       </div>
+
+      {message && <ConfirmMessage event={event} user={formData} />}
     </div>
   )
 }
