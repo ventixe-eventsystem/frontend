@@ -9,6 +9,7 @@ import PortalLayout from './layouts/portalLayout'
 import Events from './pages/Events.jsx'
 import EventDetails from './pages/EventDetails.jsx'
 import EventBooking from './pages/EventBooking.jsx'
+import ProtectedRoute from './assets/components/ProtectedRoute.jsx'
 
 function App() {
 
@@ -21,12 +22,12 @@ function App() {
           <Route path='/signup' element={<SignUp />} />
         </Route>
 
-        <Route element={<PortalLayout />}>
+        <Route element={<ProtectedRoute> <PortalLayout /> </ProtectedRoute>}>
           <Route path='/dashboard' element={<Dashboard />} />
           <Route path='/bookings' element={<Bookings />} />
           <Route path='/events' element={<Events />} />
           <Route path='/events/:eventId' element={<EventDetails />} />
-          <Route path='/event/:eventId' element={<EventBooking />}/>
+          <Route path='/event/:eventId' element={<EventBooking />} />
         </Route>
       </Routes>
     </BrowserRouter>

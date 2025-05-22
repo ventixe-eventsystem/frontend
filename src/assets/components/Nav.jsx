@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { NavLink, useLocation } from 'react-router-dom'
+import { useNavigate, NavLink, useLocation } from 'react-router-dom'
 import '../css/nav.css'
 import Dashboard from '/src/assets/icons/dashboard.svg?react'
 import Booking from '/src/assets/icons/bookings.svg?react'
@@ -15,12 +15,20 @@ import Signout from '/src/assets/icons/signout.svg?react'
 const Nav = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768)
+  const navigate = useNavigate()
 
   const location = useLocation().pathname.replace('/', '')
   const pageName = location ? location.charAt(0).toUpperCase() + location.slice(1) : ""
 
+  const handleSignOut = () => {
+    localStorage.removeItem('token')
+    localStorage.removeItem('user')
+    navigate('/login')
+  }
+
   const toggleMenu = () => {
-    setIsOpen(prev => !prev)
+    if (isMobile)
+      setIsOpen(prev => !prev)
   }
 
   useEffect(() => {
@@ -46,12 +54,12 @@ const Nav = () => {
       </div>
       <ul className={`nav-links ${isOpen ? 'show' : ''}`}>
         <li>
-          <NavLink to='/dashboard' className={({ isActive }) => isActive ? 'active' : ''}><Dashboard className='icon' />
+          <NavLink to='/dashboard' className={({ isActive }) => isActive ? 'active' : ''} onClick={toggleMenu}><Dashboard className='icon' />
             <p>Dashboard</p>
           </NavLink>
         </li>
         <li>
-          <NavLink to='/bookings' className={({ isActive }) => isActive ? 'active' : ''}><Booking className='icon' />
+          <NavLink to='/bookings' className={({ isActive }) => isActive ? 'active' : ''} onClick={toggleMenu}><Booking className='icon' />
             <p>Bookings</p>
           </NavLink>
         </li>
@@ -72,7 +80,7 @@ const Nav = () => {
           </a>
         </li>
         <li>
-          <NavLink to='/events' className={({ isActive }) => isActive ? 'active' : ''}><Events className='icon' />
+          <NavLink to='/events' className={({ isActive }) => isActive ? 'active' : ''} onClick={toggleMenu}><Events className='icon' />
             <p>Events</p>
           </NavLink>
         </li>
@@ -93,7 +101,7 @@ const Nav = () => {
         </li>
       </ul>
       {(isOpen || !isMobile) &&
-        <div className='signout-contianer'>
+        <div className='signout-contianer' onClick={handleSignOut}>
           <Signout className='icon' />
           <p>Sign out</p>
         </div>

@@ -9,6 +9,7 @@ import Settings from '/src/assets/icons/settings.svg?react'
 const header = () => {
   const location = useLocation().pathname.replace('/', '')
   const pageName = location ? location.charAt(0).toUpperCase() + location.slice(1) : ""
+  const user = JSON.parse(localStorage.getItem('user'))
 
 
   return (
@@ -19,7 +20,7 @@ const header = () => {
         }
         <h4>{pageName}</h4>
         {(pageName === 'Dashboard') &&
-          <p className='user-greating'>Hello (User), welcome back!</p>
+          <p className='user-greating'>Hello {user.firstName} {user.lastName}, welcome back!</p>
         }
       </div>
       <div className='search'>
