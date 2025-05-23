@@ -10,12 +10,15 @@ import Events from './pages/Events.jsx'
 import EventDetails from './pages/EventDetails.jsx'
 import EventBooking from './pages/EventBooking.jsx'
 import ProtectedRoute from './assets/components/ProtectedRoute.jsx'
+import VerifyEmail from './pages/VerifyEmail.jsx'
 
 function App() {
 
   return (
     <BrowserRouter>
       <Routes>
+        <Route path='/verify-email' element={<VerifyEmail />} />
+
         <Route element={<AuthLayout />}>
           <Route path='/' element={<Navigate to='/login' replace />} />
           <Route path='/login' element={<SignIn />} />
