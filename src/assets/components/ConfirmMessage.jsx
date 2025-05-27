@@ -5,16 +5,16 @@ import SuccessImg from '/src/assets/icons/successimg.svg?react'
 import { useNavigate } from 'react-router-dom'
 
 const ConfirmMessage = ({ event, user }) => {
-  const [countdown, setCountfown] = useState(5)
+  const [countdown, setCountdown] = useState(5)
   const navigate = useNavigate()
 
-  useEffect(()=> {
-    const timer = setInterval(()=> {
-      setCountfown(prev => prev - 1)
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCountdown(prev => prev - 1)
     }, 1000)
-    if (countdown === 0){
+    if (countdown === 0)
       navigate('/events')
-    }
+
     return () => clearInterval(timer)
   }, [countdown, navigate])
 

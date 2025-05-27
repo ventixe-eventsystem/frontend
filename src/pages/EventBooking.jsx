@@ -1,15 +1,18 @@
 import '../assets/css/eventbooking.css'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { getEvent } from '../assets/services/eventService'
 import { createBooking } from '../assets/services/bookingService'
+import { useAuth } from '../assets/components/AuthContext'
 import ConfirmMessage from '../assets/components/ConfirmMessage'
 
 const EventBooking = () => {
   const { eventId } = useParams()
+  const { user } = useAuth()
   const [message, setMessage] = useState(false)
   const [event, setEvent] = useState({})
   const [formData, setFormData] = useState({
+    userId: '',
     firstName: '',
     lastName: '',
     email: '',
@@ -43,8 +46,8 @@ const EventBooking = () => {
     }
     try {
       const success = createBooking(updatedEvent)
-
       if (!success) throw new Error("Faild to create booking")
+
       setMessage(true)
     }
     catch (error) {
@@ -54,6 +57,14 @@ const EventBooking = () => {
 
   useEffect(() => {
     fetchEvent()
+    if (user)
+      setFormData(prev => ({
+        ...prev,
+        userId: user.userId,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email
+      }))
   }, [eventId])
 
   return (
@@ -63,20 +74,25 @@ const EventBooking = () => {
         <form onSubmit={handleSubmit}>
           <div>
             <input name='id' type="text" hidden readOnly value={event.id || ''} />
+            <input name='user-id' type="text" readOnly value={formData.userId} />
             <p>Price for the future</p>
-            <select type="number" />
+            <div>
+              <input type="number" defaultValue={formData.numberOfTickets} />
+              <button type='button'>+</button>
+              <button type='button'>-</button>
+            </div>
           </div>
           <div>
             <label htmlFor='firstName'>First Name</label>
-            <input id='firstName' name='firstName' type="text" onChange={handleChange} />
+            <input id='firstName' name='firstName' type="text" value={formData.firstName} onChange={handleChange} />
           </div>
           <div>
             <label htmlFor='lastName'>Last Name</label>
-            <input id='lastName' name='lastName' type="text" onChange={handleChange} />
+            <input id='lastName' name='lastName' type="text" value={formData.lastName} onChange={handleChange} />
           </div>
           <div>
             <label htmlFor='email'>Email</label>
-            <input id='email' name='email' type="text" onChange={handleChange} />
+            <input id='email' name='email' type="text" value={formData.email} onChange={handleChange} />
           </div>
           <button type='submit'>Confirm</button>
         </form>

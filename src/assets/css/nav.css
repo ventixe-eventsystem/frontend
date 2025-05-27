@@ -310,6 +310,6 @@ a.active p {
   color: var(--nav-link-active);
 }
 
-/* .self-center-fornow {
-  place-self: center;
-} */
+.notImp{
+  font-size: var(--title-10);
+}

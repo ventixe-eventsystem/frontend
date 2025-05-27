@@ -3,14 +3,17 @@ import btn from '../assets/css/buttons.module.css'
 import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { signIn } from '../assets/services/authService'
+import { useAuth } from '../assets/components/AuthContext'
 
 const SignIn = () => {
-  const [user, setUser] = useState({})
+  const [form, setForm] = useState({})
+  const [message, setMessage] = useState('')
+  const { setUser } = useAuth()
   const navigate = useNavigate()
-  
+
   const handleChange = (e) => {
     const { name, value } = e.target
-    setUser(prev => ({
+    setForm(prev => ({
       ...prev, [name]: value
     }))
   }
@@ -19,12 +22,16 @@ const SignIn = () => {
     e.preventDefault()
 
     try {
-      const success = await signIn(user)
-      if (success) {
+      const result = await signIn(form)
+      if (result.isSuccess) {
+        setUser(result.user)
+        localStorage.setItem("user", JSON.stringify(result.user))
+        localStorage.setItem("token", result.token)
         navigate('/dashboard')
       }
     }
     catch (error) {
+      setMessage(error.message)
       console.log('Login failed:', error.message)
     }
   }
@@ -48,6 +55,9 @@ const SignIn = () => {
           <button type='submit' className={`${btn.primary}`}>Sign in</button>
         </div>
       </form>
+      <div>
+        <p>{message}</p>
+      </div>
       <div className='no-account'>
         <p>Don't have an account <span><Link to={'/signup'}>Sign up</Link></span></p>
       </div>

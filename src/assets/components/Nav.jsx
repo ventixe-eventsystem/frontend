@@ -11,10 +11,13 @@ import Financials from '/src/assets/icons/financials.svg?react'
 import Gallery from '/src/assets/icons/gallery.svg?react'
 import Feedback from '/src/assets/icons/feedback.svg?react'
 import Signout from '/src/assets/icons/signout.svg?react'
+import { useAuth } from './AuthContext'
+import RoleGuard from './RoleGuard'
 
 const Nav = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768)
+  const { setUser } = useAuth()
   const navigate = useNavigate()
 
   const location = useLocation().pathname.replace('/', '')
@@ -23,6 +26,7 @@ const Nav = () => {
   const handleSignOut = () => {
     localStorage.removeItem('token')
     localStorage.removeItem('user')
+    setUser(null)
     navigate('/login')
   }
 
@@ -63,20 +67,22 @@ const Nav = () => {
             <p>Bookings</p>
           </NavLink>
         </li>
-        <li>
-          <a><Invoices className='icon' />
-            <p>Invoices</p>
-          </a>
-        </li>
+        <RoleGuard roles={['Admin']}>
+          <li>
+            <a><Invoices className='icon' />
+              <p>Invoices <span className="notImp">(Not implemented)</span></p>
+            </a>
+          </li>
+        </RoleGuard>
         <li>
           <a>
             <Inbox className='icon' />
-            <p>Inbox</p>
+            <p>Inbox <span className="notImp">(Not implemented)</span></p>
           </a>
         </li>
         <li>
           <a><Calendar className='icon' />
-            <p>Calendar</p>
+            <p>Calendar <span className="notImp">(Not implemented)</span></p>
           </a>
         </li>
         <li>
@@ -84,19 +90,21 @@ const Nav = () => {
             <p>Events</p>
           </NavLink>
         </li>
-        <li>
-          <a><Financials className='icon' />
-            <p>Financials</p>
-          </a>
-        </li>
+        <RoleGuard roles={['Admin']}>
+          <li>
+            <a><Financials className='icon' />
+              <p>Financials <span className="notImp">(Not implemented)</span></p>
+            </a>
+          </li>
+        </RoleGuard>
         <li>
           <a><Gallery className='icon' />
-            <p>Gallery</p>
+            <p>Gallery <span className="notImp">(Not implemented)</span></p>
           </a>
         </li>
         <li>
           <a><Feedback className='icon' />
-            <p>Feedback</p>
+            <p>Feedback <span className='notImp'>(Not implemented)</span></p>
           </a>
         </li>
       </ul>

@@ -1,13 +1,16 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import '../css/eventcard.css'
+import RoleGuard from './RoleGuard'
 
 const EventCard = ({ event, onRemove }) => {
   return (
     <>
       <div className="event-card" id={event.id}>
         <div className="event-preview">
-          <button className="btn-remove" onClick={onRemove}>Remove Event</button>
+          <RoleGuard roles={['Admin']}>
+            <button className="btn-remove" onClick={onRemove}>Remove Event</button>
+          </RoleGuard>
         </div>
         <div className="event-info">
           <p>

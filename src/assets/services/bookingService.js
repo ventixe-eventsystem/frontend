@@ -16,6 +16,14 @@ export async function getAllBookings() {
   const response = await fetch(`${bookingtUrl}`, {
     method: "GET"
   })
-  const data = response.json()
+  const data = await response.json()
+  return data
+}
+
+export async function getBooking(id){
+  const response = await fetch(`${bookingtUrl}/${id}`,{
+    method: "GET"
+  })
+  const data = await response.json()
   return data
 }
