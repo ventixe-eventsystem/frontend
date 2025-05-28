@@ -62,6 +62,7 @@
        --text-color-packages: var(--gray-100);
        --text-color-packages-price: var(--primary-100);
        --text-color-no-account: var(--gray-70);
+       --text-color-table-header: var(--gray-70);
 
        --bg-color: var(--gray-10);
        --bg-nav: var(--cool-10);
@@ -176,6 +177,7 @@
        grid-area: main;
        background-color: var(--bg-main);
        border-radius: 1rem;
+       overflow-x: hidden;
      }
 
      footer {

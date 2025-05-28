@@ -2,7 +2,8 @@ const eventUrl = "https://mvp-eventservice-d9ech9f0dba3fbfe.swedencentral-01.azu
 
 export async function getEvents() {
   const response = await fetch(`${eventUrl}`)
-  return response.json()
+  const data = response.json()
+  return data
 }
 
 export async function getEvent(id) {

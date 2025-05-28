@@ -10,6 +10,7 @@ const SignIn = () => {
   const [message, setMessage] = useState('')
   const { setUser } = useAuth()
   const navigate = useNavigate()
+  const roleStartPages = { Admin: '/dashboard', User: '/events'}
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -27,7 +28,10 @@ const SignIn = () => {
         setUser(result.user)
         localStorage.setItem("user", JSON.stringify(result.user))
         localStorage.setItem("token", result.token)
-        navigate('/dashboard')
+
+        const userRoles = result.user.roles
+        const startPage = userRoles.map(role => roleStartPages[role]).find(Boolean)
+        navigate(startPage)
       }
     }
     catch (error) {

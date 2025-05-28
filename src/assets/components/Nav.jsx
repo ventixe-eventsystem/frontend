@@ -57,11 +57,13 @@ const Nav = () => {
         <img className='show-mobile hamburger-menu' src='src/assets/icons/hamburger.svg' onClick={toggleMenu} />
       </div>
       <ul className={`nav-links ${isOpen ? 'show' : ''}`}>
-        <li>
-          <NavLink to='/dashboard' className={({ isActive }) => isActive ? 'active' : ''} onClick={toggleMenu}><Dashboard className='icon' />
-            <p>Dashboard</p>
-          </NavLink>
-        </li>
+        <RoleGuard roles={['Admin']} >
+          <li>
+            <NavLink to='/dashboard' className={({ isActive }) => isActive ? 'active' : ''} onClick={toggleMenu}><Dashboard className='icon' />
+              <p>Dashboard</p>
+            </NavLink>
+          </li>
+        </RoleGuard>
         <li>
           <NavLink to='/bookings' className={({ isActive }) => isActive ? 'active' : ''} onClick={toggleMenu}><Booking className='icon' />
             <p>Bookings</p>

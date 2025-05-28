@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { getAllBookings, getBooking } from '../assets/services/bookingService'
 import { useAuth } from '../assets/components/AuthContext'
-import { getEvent } from '../assets/services/eventService'
+import { getEvent, getEvents } from '../assets/services/eventService'
 import '../assets/css/bookings.css'
 
 
@@ -12,8 +12,22 @@ const Bookings = () => {
   useEffect(() => {
     if (!user) return
 
-    if (user?.roles?.includes('Admin'))
-      getAllBookings().then(setBookings).catch(console.error)
+    if (user?.roles?.includes('Admin')){
+      const fetchData = async () => {
+        const allBookings = await getAllBookings()
+        const allEvents = await getEvents()
+  
+        const allEventsAndBookings = allBookings.map(booking => {
+          const event = allEvents.find(e => e.id === booking.eventId)
+          return {
+            ...booking,
+            event: event ? event.name : 'unknown event'
+          }
+        })
+        setBookings(allEventsAndBookings)
+      }
+      fetchData()
+    }
     else if (user) {
       const fetchBookingsAndEvents = async () => {
         const bookings = await getBooking(user.userId)
@@ -30,13 +44,12 @@ const Bookings = () => {
       fetchBookingsAndEvents()
     }
   }, [user])
-
+  
   if (!user) return <div>Loading...</div>
 
   return (
-    <div>
+    <div className='inner-wrapper'>
       {user?.roles?.includes('Admin') ? (
-
         <div className="table-wrapper">
           <table>
             <thead>
@@ -56,14 +69,14 @@ const Bookings = () => {
                   <td>
                     <div className='time-container'>
                       <span>{new Date(b.bookingDate).toLocaleDateString('sv-SE', { day: '2-digit', month: '2-digit', year: 'numeric' }).replaceAll('-', '/')}</span>
-                      <span>{new Date(b.bookingDate).toLocaleTimeString('sv-SE', { hour: '2-digit', minute: '2-digit' })}</span>
+                      <span className='td-time'>{new Date(b.bookingDate).toLocaleTimeString('sv-SE', { hour: '2-digit', minute: '2-digit' })}</span>
                     </div>
                   </td>
                   <td>{b.firstName} {b.lastName}</td>
-                  <td>Namn</td>
-                  <td>{b.amount} 10</td>
-                  <td>{b.numberOfTickets}</td>
-                  <td>{(b.numberOfTickets) * (b.amount)}</td>
+                  <td>{b.event}</td>
+                  <td className='td-price'>{b.amount} 10</td>
+                  <td className='td-qty'>{b.numberOfTickets}</td>
+                  <td className='td-amount'>{(b.numberOfTickets) * (b.amount)}</td>
                   <td>no status</td>
                 </tr>
               )}
@@ -73,34 +86,35 @@ const Bookings = () => {
 
       ) : (
 
-        <table>
-          <thead>
-            <tr>
-              <th>Event</th>
-              <th>Location</th>
-              <th>Description</th>
-              <th>Date</th>
-              <th>Time</th>
-              <th>Tickets</th>
-              <th>Cost($)</th>
-            </tr>
-          </thead>
-          <tbody>
-            {bookings.length > 0 ? bookings.map(b =>
-              <tr key={b.id}>
-                <td>{b.event.name}</td>
-                <td>{b.event.location}</td>
-                <td>{b.event.description}</td>
-                <td>{new Date(b.event.dateAndTime).toLocaleDateString('sv-SE', { day: 'numeric', month: 'long', year: 'numeric' })}</td>
-                <td>{new Date(b.event.dateAndTime).toLocaleTimeString('sv-SE', { hour: '2-digit', minute: '2-digit' })}</td>
-                <td>{b.numberOfTickets}</td>
-                <td>{b.amount}</td>
+        <div className="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Event</th>
+                <th>Location</th>
+                <th>Description</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Tickets</th>
+                <th>Cost $</th>
               </tr>
-            ) : <tr><td>No bookings</td></tr>}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {bookings.length > 0 ? bookings.map(b =>
+                <tr key={b.id}>
+                  <td>{b.event.name}</td>
+                  <td>{b.event.location}</td>
+                  <td>{b.event.description}</td>
+                  <td>{new Date(b.event.dateAndTime).toLocaleDateString('sv-SE', { day: 'numeric', month: 'long', year: 'numeric' })}</td>
+                  <td>{new Date(b.event.dateAndTime).toLocaleTimeString('sv-SE', { hour: '2-digit', minute: '2-digit' })}</td>
+                  <td className='td-qty'>{b.numberOfTickets}</td>
+                  <td className='td-amount'>{b.amount} 0</td>
+                </tr>
+              ) : <tr><td>No bookings</td></tr>}
+            </tbody>
+          </table>
+        </div>
       )}
-
     </div>
   )
 }
