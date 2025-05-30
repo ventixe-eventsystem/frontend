@@ -22,7 +22,6 @@ function App() {
         <Route path='/verify-email' element={<VerifyEmail />} />
 
         <Route element={<AuthLayout />}>
-          {/* <Route path='/' element={<Navigate to='/login' replace />} /> */}
           <Route path='/' element={<RoleBasedRedirect />} />
           <Route path='/login' element={<SignIn />} />
           <Route path='/signup' element={<SignUp />} />
