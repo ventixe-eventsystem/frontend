@@ -70,41 +70,41 @@ const Nav = () => {
           </NavLink>
         </li>
         <RoleGuard roles={['Admin']}>
-          <li>
+          <li className='disable'>
             <a><Invoices className='icon' />
               <p>Invoices <span className="notImp">(Not implemented)</span></p>
             </a>
           </li>
         </RoleGuard>
-        <li>
+        <li className='disable'>
           <a>
             <Inbox className='icon' />
             <p>Inbox <span className="notImp">(Not implemented)</span></p>
           </a>
         </li>
-        <li>
+        <li className='disable'>
           <a><Calendar className='icon' />
             <p>Calendar <span className="notImp">(Not implemented)</span></p>
           </a>
         </li>
-        <li>
+        <li >
           <NavLink to='/events' className={({ isActive }) => isActive ? 'active' : ''} onClick={toggleMenu}><Events className='icon' />
             <p>Events</p>
           </NavLink>
         </li>
         <RoleGuard roles={['Admin']}>
-          <li>
+          <li className='disable'>
             <a><Financials className='icon' />
               <p>Financials <span className="notImp">(Not implemented)</span></p>
             </a>
           </li>
         </RoleGuard>
-        <li>
+        <li className='disable'>
           <a><Gallery className='icon' />
             <p>Gallery <span className="notImp">(Not implemented)</span></p>
           </a>
         </li>
-        <li>
+        <li className='disable'>
           <a><Feedback className='icon' />
             <p>Feedback <span className='notImp'>(Not implemented)</span></p>
           </a>

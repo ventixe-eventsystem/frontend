@@ -136,16 +136,16 @@
        }
      }
 
-     .auth-wrapper{
-      display: grid;
-      place-content: center;
-      min-height: 100dvh;
+     .auth-wrapper {
+       display: grid;
+       place-content: center;
+       min-height: 100dvh;
      }
 
-     .inner-wrapper{
-      padding: 1rem;
-      background-color: var(--gray-20);
-      border-radius: 1rem;
+     .inner-wrapper {
+       padding: 1rem;
+       background-color: var(--gray-20);
+       border-radius: 1rem;
      }
 
      .show-mobile {
@@ -174,10 +174,10 @@
      }
 
      main {
+       overflow-x: hidden;
        grid-area: main;
        background-color: var(--bg-main);
        border-radius: 1rem;
-       overflow-x: hidden;
      }
 
      footer {
@@ -206,4 +206,15 @@
 
      h6 {
        font-size: 20px;
+     }
+
+     .input-error {
+       position: absolute;
+       bottom: -25%;
+       right: 0;
+       color: white;
+       background-color: red;
+       padding-inline: .1rem;
+       border-radius: .1rem;
+       font-size: var(--title-9);
      }

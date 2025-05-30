@@ -1,3 +1,9 @@
+.bg-signin {
+  padding: .4rem;
+  background-color: transparent;
+  border-radius: 1rem;
+}
+
 .signin-container {
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   background-color: var(--bg-main-auth);
@@ -22,6 +28,7 @@
 .group {
   display: grid;
   gap: .35rem;
+  position: relative;
 }
 
 .group input {
@@ -33,6 +40,20 @@
 
 .group input:focus {
   outline: none;
+}
+
+.error-msg {
+  text-align: center;
+  padding: 0rem;
+  background-color: var(--bg-main);
+  max-height: 0;
+  overflow: hidden;
+  transition: padding .3s ease, max-height .3s ease;
+}
+
+.error-msg.show {
+  max-height: 10rem;
+  padding: 1rem;
 }
 
 .no-account {

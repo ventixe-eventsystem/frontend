@@ -109,6 +109,26 @@ nav {
   }
 }
 
+.nav-links li.disable::after{
+  content: "";
+  background-image: url('/src/assets/icons/disable.svg');
+  position: absolute;
+  height: 2rem;
+  width: 2rem;
+  background-size: contain;
+  background-position: center;
+  top: 50%;
+  left: 5.75%;
+  transform: translate(-50%, -50%);
+  @media (width > 768px){
+    left: 50%;
+  }
+  @media (width > 1400px){
+    left: 19%;
+  }
+}
+
+
 .nav-links li:hover {
   background-color: var(--nav-link-hover);
   border-radius: 6px;

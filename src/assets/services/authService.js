@@ -1,6 +1,7 @@
 // const authUrl = "https://mvp-bookingservice-fecxb3bbb8efgwhg.swedencentral-01.azurewebsites.net/api/booking"
 const signInUrl = "https://localhost:7066/api/auth/signin"
 const singUpUrl = "https://localhost:7066/api/auth/signup"
+const emailUrl = "https://localhost:7066/api/auth/email"
 
 
 export async function signIn(user) {
@@ -34,4 +35,12 @@ export async function signUp(user){
   }
   const data = await response.json()
   return true
+}
+
+export async function emailExists(email) {
+  const response = await fetch(`${emailUrl}?email=${email}`, { 
+    method: 'POST'
+  })
+  const data = await response.json()
+  return data.exists
 }
