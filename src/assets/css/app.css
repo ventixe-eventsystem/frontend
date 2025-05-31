@@ -63,6 +63,11 @@
        --text-color-packages-price: var(--primary-100);
        --text-color-no-account: var(--gray-70);
        --text-color-table-header: var(--gray-70);
+       --text-color-widget: var(--gray-60);
+       --text-color-widget-h6: var(--secondary-100);
+       --text-color-date: var(--gray-70);
+       --text-color-location: var(--gray-80);
+       --text-color-description: var(--gray-90);
 
        --bg-color: var(--gray-10);
        --bg-nav: var(--cool-10);
@@ -79,8 +84,11 @@
        --bg-event-details: var(--gray-10);
        --bg-confirm-message: var(--gray-20);
        --bg-signin-form: var(--gray-10);
+       --bg-widget: var(--gray-10);
+       --bg-icon: var(--primary-100);
 
        --icon-color: var(--secondary-100);
+       --icon-color-widget: var(--gray-10);
        --icon-color-checkmark: var(--gray-50);
        --icon-color-hover: var(--gray-10);
        --icon-color-active: var(--gray-10);

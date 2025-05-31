@@ -1,15 +1,48 @@
 .event-card {
-  width: 334px;
-  height: 346px;
+  /* min-width: 274px;
+  max-width: 334px;
+  height: 346px; */
   background-color: var(--bg-card);
   border-radius: .75rem;
   display: grid;
-  margin-inline: auto;
   padding: .75rem;
+  gap: .5rem;
 }
-.event-preview{
-  width: 310px;
+
+.event-preview {
+  /* min-width: 250px;
+  max-width: 334px; */
   height: 209px;
   background-color: var(--bg-event-preview);
   border-radius: .75rem;
+}
+
+.event-info {
+  display: grid;
+  gap: .2rem;
+}
+
+.event-date {
+  font-size: var(--title-11);
+  color: var(--text-color-date);
+}
+
+.event-title {
+  color: var(--text-color);
+  font-weight: 600;
+}
+
+.event-location{
+  font-size: var(--title-11);
+  color: var(--text-color-location);
+}
+.event-location::before {
+  content: url('/src/assets/icons/mappin.svg');
+  vertical-align: middle;
+  padding-right: .2rem;
+}
+
+.event-price {
+  display: flex;
+  justify-content: space-between;
 }

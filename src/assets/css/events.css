@@ -1,10 +1,29 @@
+.events {
+  display: grid;
+  grid-template-areas: 'events-options' 'card';
+  gap: 1rem;
+  padding:0 1rem 1rem 1rem;
+
+  @media (width > 768px) {
+    grid-template-areas: 'events-options events-options' 'card card';
+    grid-template-columns: 1fr 1fr;
+  
+  }
+
+  @media (width > 1400px){
+    grid-template-areas: 'events-options events-options events-options events-options';
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
 .events-options{
   display: grid;
   width: 334px;
   grid-template-columns: repeat(3, 1fr);
   row-gap: .75rem;
   margin-inline: auto;
-  padding-block: 1rem 1.5rem;
+  padding-top: 1rem;
+  grid-area: events-options;
 }
 .search-event {
   grid-column: 1 / -1;

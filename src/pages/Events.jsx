@@ -4,11 +4,9 @@ import EventCard from '../assets/components/EventCard'
 import AddEvent from '../assets/components/AdminAddEvent'
 import { getEvents, removeEvent } from '../assets/services/eventService'
 import RoleGuard from '../assets/components/RoleGuard'
-import { useAuth } from '../assets/components/AuthContext'
 
 const Events = () => {
   const [events, setEvents] = useState([])
-  const { user } = useAuth()
 
   useEffect(() => {
     if(!events) return
@@ -28,7 +26,7 @@ const Events = () => {
   if (!events) return <div>Loading...</div>
   
   return (
-    <div>
+    <div className='events'>
       <div className='events-options'>
         <RoleGuard roles={["Admin"]}>
           <AddEvent onAdd={newEvents => setEvents(newEvents)} />

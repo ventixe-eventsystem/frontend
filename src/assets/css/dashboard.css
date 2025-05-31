@@ -1,0 +1,51 @@
+.dashboard {
+  display: grid;
+  padding: 1rem;
+  grid-template-areas: 'upcoming bookings tickets';
+  grid-template-columns: repeat(3, 1fr);
+  gap: .75rem;
+}
+
+.upcoming-container {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-widget);
+  grid-area: upcoming;
+  border-radius: 1rem;
+  padding: 1rem;
+  gap: 1.5rem;
+  @media (width > 768px){
+    display: grid;
+    grid-template-columns: auto 1fr;
+  }
+}
+
+.calander-container {
+  background-color: var(--bg-icon);
+  display: flex;
+  margin-right: auto;
+  padding: .6rem;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  height: 44px;
+  aspect-ratio: 1;
+}
+
+.calander {
+  color: var(--icon-color-widget);
+}
+
+.upcoming {
+  display: grid;
+  gap: .4rem;
+}
+
+.upcoming-title {
+  font-size: var(--title-12);
+  color: var(--text-color-widget);
+}
+
+.upcoming-qty {
+  color: var(--text-color-widget-h6);
+}

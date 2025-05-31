@@ -1,8 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import '../assets/css/eventdetails.css'
 import Packages from '../assets/components/Packages'
 import { NavLink, useParams } from 'react-router-dom'
 import { getEvent } from '../assets/services/eventService'
+import DateIcon from '/src/assets/icons/calendardot.svg?react'
+import MapPinIcon from '/src/assets/icons/mappin.svg?react'
+import btn from '../assets/css/buttons.module.css'
+
 
 const Event = () => {
   const { eventId } = useParams()
@@ -24,21 +28,37 @@ const Event = () => {
 
   return (
     <div className='inner-wrapper space'>
-      <div>
+      <div className='event-info-container'>
         <div className="preview-event"></div>
         <div className="event-info-details">
-          <p>
-            {new Date(event.dateAndTime).toLocaleDateString('sv-SE', { day: 'numeric', month: 'long', year: 'numeric' })} - {new Date(event.dateAndTime).toLocaleTimeString('sv-SE', { hour: '2-digit', minute: '2-digit' })}
-          </p>
           <h6 className='details-title'>{event.name}</h6>
-          <p className='details-location'>{event.location}</p>
-          <div>
-            <NavLink to={`/event/${encodeURIComponent(event.id)}`}>Book</NavLink>
+          <div className="group-icon">
+            <DateIcon className='details-icon' />
+            <p className='details-date'>
+              {new Date(event.dateAndTime).toLocaleDateString('sv-SE', { day: 'numeric', month: 'long', year: 'numeric' })} - {new Date(event.dateAndTime).toLocaleTimeString('sv-SE', { hour: '2-digit', minute: '2-digit' })}
+            </p>
           </div>
+          <div className="group-icon">
+            <MapPinIcon className='details-icon' />
+            <p className='details-location'>{event.location}</p>
+          </div>
+
           <div className='details-line'></div>
-          <p>$40</p>
+          <div className='details-price'>
+            <NavLink to={`/event/${encodeURIComponent(event.id)}`} className={btn.primary}>Book</NavLink>
+            <div className="price-container">
+              <p className='price-text'>Starts from</p>
+              <h6 className='amount'>${event.amount}40</h6>
+            </div>
+          </div>
+
           <div className='details-line'></div>
-          <p>{event.description}</p>
+          <div className='details-about'>
+            <p className='details-about-title'>About Event</p>
+            <p className='details-about-description'>{event.description}
+              The Echo Beats Festival brings together a stellar lineup of artists across EDM, pop, and hip-hop genres. Prepare to experience a night of electrifying music, vibrant light shows, and unforgettable performances under the stars. Explore food trucks, art installations, and VIP lounges for an elevated experience.
+            </p>
+          </div>
         </div>
       </div>
       <Packages />
