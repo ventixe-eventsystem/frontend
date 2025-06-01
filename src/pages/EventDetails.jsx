@@ -18,10 +18,9 @@ const Event = () => {
       setEvent(result)
     }
     catch (error) {
-      console.error('Error fetching evnets:', error)
+      console.error('Error fetching events:', error)
     }
   }
-
   useEffect(() => {
     fetchEvent()
   }, [eventId])

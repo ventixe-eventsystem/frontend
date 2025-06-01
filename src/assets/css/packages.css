@@ -3,6 +3,7 @@
   padding: 1rem;
   display: grid;
   gap: 1.25rem;
+  border-radius: 1rem;
 }
 
 .packages-header {

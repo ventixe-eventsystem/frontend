@@ -11,8 +11,8 @@ const Events = () => {
   useEffect(() => {
     if(!events) return
     getEvents().then(setEvents).catch(console.error)
-  }, [events])
-
+  }, [])
+  
   const handleRemove = async (id) => {
     try {
       await removeEvent(id)

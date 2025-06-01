@@ -1,7 +1,4 @@
 .event-card {
-  /* min-width: 274px;
-  max-width: 334px;
-  height: 346px; */
   background-color: var(--bg-card);
   border-radius: .75rem;
   display: grid;
@@ -10,8 +7,6 @@
 }
 
 .event-preview {
-  /* min-width: 250px;
-  max-width: 334px; */
   height: 209px;
   background-color: var(--bg-event-preview);
   border-radius: .75rem;
@@ -44,5 +39,33 @@
 
 .event-price {
   display: flex;
-  justify-content: space-between;
+  align-items: center;
+}
+
+.progress-container {
+  width: 60%;
+  height: .5rem;
+  background-color: var(--bg-progressbar);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-right: .5rem;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: var(--primary-100);
+  transition: width 0.3s ease;
+}
+
+.progress-text {
+  font-size: var(--title-14);
+  font-weight: 600;
+  color: var(--text-color)
+}
+
+.start-price {
+  margin-left: auto;
+  color: var(--text-color-packages-price);
+  font-size: var(--title-18);
+  font-weight: 600;
 }

@@ -1,31 +1,40 @@
-import React from 'react'
+import { useEffect, useState } from 'react'
 import '../css/packages.css'
+import { getPackages } from '../services/eventService'
 
 const Packages = () => {
+  const [packages, setPackages] = useState({})
+
+  const fetchPackages = async () => {
+    try {
+      const result = await getPackages()
+      setPackages(result)
+    }
+    catch (error) {
+      console.error('Error fetching packages:', error)
+    }
+  }
+
+  useEffect(() => {
+    fetchPackages()
+  }, [])
+
   return (
     <div className='packages'>
-    <p className='packages-header'>Packages</p>
+      <p className='packages-header'>Packages</p>
       <ul className='packages-ul'>
-        <li className='packages-li'>
-          <div className='li-flex'>
-            <p>General Admission Package</p>
-            <span>50 Kr</span>
-          </div>
-          <div className='li-seating'>
-            <p>Standing</p>
-            <p>Access to Festival Grounds</p>
-          </div>
-        </li>
-        <li className='packages-li'>
-          <div className='li-flex'>
-            <p>Silver Package</p>
-            <span>70 Kr</span>
-          </div>
-          <div className='li-seating'>
-            <p>Seating</p>
-            <p>Near Stage</p>
-          </div>
-        </li>
+        {packages.length > 0 ? packages.map(p =>
+          <li key={p.id} className='packages-li'>
+            <div className='li-flex'>
+              <p>{p.name}</p>
+              <span>{p.price}</span>
+            </div>
+            <div className='li-seating'>
+              <p>{p.type}</p>
+              <p>{p.description}</p>
+            </div>
+          </li>
+        ) : (<p>No packages</p>)}
       </ul>
     </div>
   )

@@ -74,7 +74,7 @@ const Bookings = () => {
                   </td>
                   <td>{b.firstName} {b.lastName}</td>
                   <td>{b.event}</td>
-                  <td className='td-price'>{b.amount} 10</td>
+                  <td className='td-price'>{b.amount}</td>
                   <td className='td-qty'>{b.numberOfTickets}</td>
                   <td className='td-amount'>{(b.numberOfTickets) * (b.amount)}</td>
                   <td>no status</td>
