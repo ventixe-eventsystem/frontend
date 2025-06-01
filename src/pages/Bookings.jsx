@@ -7,16 +7,41 @@ import '../assets/css/bookings.css'
 
 const Bookings = () => {
   const [bookings, setBookings] = useState([])
+  const [sortDirection, setSortDirection] = useState('asc')
+  const [sortBy, setSortBy] = useState('date')
   const { user } = useAuth()
+
+  const sortFunctions = {
+    date: (a, b) => new Date(a.bookingDate) - new Date(b.bookingDate),
+    name: (a, b) => a.firstName.localeCompare(b.firstName),
+    event: (a, b) => a.event.localeCompare(b.event),
+    price: (a, b) => a.amount - b.amount,
+    qty: (a, b) => a.numberOfTickets - b.numberOfTickets,
+    amount: (a, b) => (a.numberOfTickets * a.amount) - (b.numberOfTickets * b.amount)
+  }
+
+  const sorted = [...bookings].sort((a, b) => {
+    const result = sortFunctions[sortBy](a, b)
+    return sortDirection === 'asc' ? result : -result
+  })
+
+  const handleSort = (column) => {
+    if (sortBy === column)
+      setSortDirection(prev => (prev === 'asc' ? 'desc' : 'asc'))
+    else {
+      setSortBy(column)
+      setSortDirection('asc')
+    }
+  }
 
   useEffect(() => {
     if (!user) return
 
-    if (user?.roles?.includes('Admin')){
+    if (user?.roles?.includes('Admin')) {
       const fetchData = async () => {
         const allBookings = await getAllBookings()
         const allEvents = await getEvents()
-  
+
         const allEventsAndBookings = allBookings.map(booking => {
           const event = allEvents.find(e => e.id === booking.eventId)
           return {
@@ -44,7 +69,7 @@ const Bookings = () => {
       fetchBookingsAndEvents()
     }
   }, [user])
-  
+
   if (!user) return <div>Loading...</div>
 
   return (
@@ -54,17 +79,17 @@ const Bookings = () => {
           <table>
             <thead>
               <tr>
-                <th>Date</th>
-                <th>Name</th>
-                <th>Event</th>
-                <th>Price</th>
-                <th>Qty</th>
-                <th>Amount</th>
+                <th onClick={() => handleSort('date')}>Date</th>
+                <th onClick={() => handleSort('name')}>Name</th>
+                <th onClick={() => handleSort('event')}>Event</th>
+                <th onClick={() => handleSort('price')}>Price</th>
+                <th onClick={() => handleSort('qty')}>Qty</th>
+                <th onClick={() => handleSort('amount')}>Amount</th>
                 <th>Status</th>
               </tr>
             </thead>
             <tbody>
-              {bookings.map(b =>
+              {sorted.map(b =>
                 <tr key={b.id}>
                   <td>
                     <div className='time-container'>

@@ -44,7 +44,7 @@ const Event = () => {
 
           <div className='details-line'></div>
           <div className='details-price'>
-            <NavLink to={`/event/${encodeURIComponent(event.id)}`} className={btn.primary}>Book</NavLink>
+            <NavLink to={`/event/${encodeURIComponent(event.id)}?package=1`} className={btn.primary}>Book</NavLink>
             <div className="price-container">
               <p className='price-text'>Starts from</p>
               <h6 className='amount'>${event.amount}40</h6>
@@ -54,13 +54,13 @@ const Event = () => {
           <div className='details-line'></div>
           <div className='details-about'>
             <p className='details-about-title'>About Event</p>
-            <p className='details-about-description'>{event.description}
-              The Echo Beats Festival brings together a stellar lineup of artists across EDM, pop, and hip-hop genres. Prepare to experience a night of electrifying music, vibrant light shows, and unforgettable performances under the stars. Explore food trucks, art installations, and VIP lounges for an elevated experience.
+            <p className='details-about-description'>
+              {event.description}
             </p>
           </div>
         </div>
       </div>
-      <Packages />
+      <Packages eventName={event} />
     </div>
   )
 }

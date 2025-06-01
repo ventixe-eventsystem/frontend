@@ -1,16 +1,18 @@
 import '../assets/css/eventbooking.css'
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
-import { getEvent } from '../assets/services/eventService'
+import { useParams, useSearchParams } from 'react-router-dom'
+import { getEvent, getPackages } from '../assets/services/eventService'
 import { createBooking } from '../assets/services/bookingService'
 import { useAuth } from '../assets/components/AuthContext'
 import ConfirmMessage from '../assets/components/ConfirmMessage'
 
 const EventBooking = () => {
   const { eventId } = useParams()
+  const [searchParams] = useSearchParams()
   const { user } = useAuth()
   const [message, setMessage] = useState(false)
   const [event, setEvent] = useState({})
+  const [selectedPackage, setSelectedPackage] = useState([])
   const [formData, setFormData] = useState({
     userId: '',
     firstName: '',
@@ -18,8 +20,16 @@ const EventBooking = () => {
     email: '',
     bookingDate: '',
     eventId: '',
-    numberOfTickets: 1
+    numberOfTickets: 1,
+    amount: ''
   })
+
+  const fetchPackage = async () => {
+    const result = await getPackages()
+    const packageId = searchParams.get('package')
+    const pack = result?.find(p => p.id === Number(packageId))
+    setSelectedPackage(pack)
+  }
 
   const fetchEvent = async () => {
     const result = await getEvent(eventId)
@@ -42,7 +52,8 @@ const EventBooking = () => {
       ...rest,
       ...formData,
       bookingDate: now,
-      eventId: event.id
+      eventId: event.id,
+      amount: selectedPackage.price
     }
     try {
       const success = createBooking(updatedEvent)
@@ -57,6 +68,7 @@ const EventBooking = () => {
 
   useEffect(() => {
     fetchEvent()
+    fetchPackage()
     if (user)
       setFormData(prev => ({
         ...prev,
@@ -73,11 +85,12 @@ const EventBooking = () => {
       <div>
         <form onSubmit={handleSubmit}>
           <div>
-            <input name='id' type="text" hidden readOnly value={event.id || ''} />
-            <input name='user-id' type="text" readOnly value={formData.userId} />
-            <p>Price for the future</p>
+            <input name='id' type="hidden" readOnly value={event.id || ''} />
+            <input name='user-id' type="hidden" readOnly value={formData.userId} />
+            <p>{selectedPackage.name} - ${selectedPackage.price}</p>
+            <input name='amount' type="hidden" defaultValue={selectedPackage.price} readOnly />
             <div>
-              <input type="number" defaultValue={formData.numberOfTickets} />
+              <input type="number" name='numberOfTickets' defaultValue={formData.numberOfTickets} onChange={handleChange} />
               <button type='button'>+</button>
               <button type='button'>-</button>
             </div>

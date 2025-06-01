@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
 import '../css/packages.css'
 import { getPackages } from '../services/eventService'
+import { Link } from 'react-router-dom'
 
-const Packages = () => {
+const Packages = ({ eventName}) => {
   const [packages, setPackages] = useState({})
 
   const fetchPackages = async () => {
@@ -25,14 +26,16 @@ const Packages = () => {
       <ul className='packages-ul'>
         {packages.length > 0 ? packages.map(p =>
           <li key={p.id} className='packages-li'>
-            <div className='li-flex'>
-              <p>{p.name}</p>
-              <span>{p.price}</span>
-            </div>
-            <div className='li-seating'>
-              <p>{p.type}</p>
-              <p>{p.description}</p>
-            </div>
+            <Link to={`/event/${encodeURIComponent(eventName.id)}?package=${p.id}`}>
+              <div className='li-flex'>
+                <p>{p.name}</p>
+                <span>{p.price}</span>
+              </div>
+              <div className='li-seating'>
+                <p>{p.type}</p>
+                <p>{p.description}</p>
+              </div>
+            </Link>
           </li>
         ) : (<p>No packages</p>)}
       </ul>

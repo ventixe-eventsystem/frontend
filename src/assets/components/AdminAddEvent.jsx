@@ -4,7 +4,7 @@ import { createEvent, getEvents } from '../services/eventService'
 const AdminAddEvent = ({ onAdd }) => {
   const today = new Date().toISOString().split('T')[0]
   const todayTime = new Date().toTimeString().slice(0,5)
-  const [event, setEvent] = useState({ name: "", location: "", description: "", dateandtime: today, time: todayTime })
+  const [event, setEvent] = useState({ name: "", location: "", description: "", dateandtime: today, time: todayTime, maxAttendees: 150})
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -48,6 +48,8 @@ const AdminAddEvent = ({ onAdd }) => {
         <input id='date' type="date" name='dateandtime' value={event.dateandtime} min={today} onChange={handleChange} />
         <label htmlFor="time">Time</label>
         <input id='time' type="time" name='time' value={event.time} onChange={handleChange} />
+        <label htmlFor="maxattendees">Max tickets</label>
+        <input id='maxattendes' type="number" name='maxAttendees' value={event.maxAttendees} onChange={handleChange} />
         <button type='submit'>Add</button>
       </form>
     </div>
