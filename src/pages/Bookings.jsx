@@ -115,13 +115,13 @@ const Bookings = () => {
           <table>
             <thead>
               <tr>
-                <th>Event</th>
+                <th onClick={() => handleSort('event')}>Event</th>
                 <th>Location</th>
                 <th>Description</th>
-                <th>Date</th>
+                <th onClick={() => handleSort('date')}>Date</th>
                 <th>Time</th>
-                <th>Tickets</th>
-                <th>Cost $</th>
+                <th onClick={() => handleSort('qty')}>Tickets</th>
+                <th onClick={() => handleSort('amount')}>Cost $</th>
               </tr>
             </thead>
             <tbody>
