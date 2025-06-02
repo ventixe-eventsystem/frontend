@@ -4,6 +4,7 @@ import '../assets/css/signup.css'
 import btn from '../assets/css/buttons.module.css'
 import { signUp, emailExists } from '../assets/services/authService'
 import { validate } from '../assets/services/validate'
+import logo from '../assets/icons/logo.svg'
 
 const SignUp = () => {
   const navigate = useNavigate()
@@ -54,7 +55,7 @@ const SignUp = () => {
     <div className='bg-signin'>
       <div className='signup-container'>
         <div className='signup-header'>
-          <img src='/src/assets/icons/logo.svg' />
+          <img src={logo} />
           <h1>Ventixe</h1>
         </div>
         <form className='this-form'>

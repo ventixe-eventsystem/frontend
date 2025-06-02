@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { signIn } from '../assets/services/authService'
 import { useAuth } from '../assets/components/AuthContext'
 import { validate } from '../assets/services/validate'
+import logo from '../assets/icons/logo.svg'
 
 const SignIn = () => {
   const [form, setForm] = useState({})
@@ -58,7 +59,7 @@ const SignIn = () => {
     <div className='bg-signin'>
       <div className='signin-container'>
         <div className="signin-header">
-          <img src='/src/assets/icons/logo.svg' />
+          <img src={logo} />
           <h4>Ventixe</h4>
         </div>
         <form onSubmit={handleSubmit} noValidate>
