@@ -1,7 +1,6 @@
-// const authUrl = "https://mvp-bookingservice-fecxb3bbb8efgwhg.swedencentral-01.azurewebsites.net/api/booking"
-const signInUrl = "https://localhost:7066/api/auth/signin"
-const singUpUrl = "https://localhost:7066/api/auth/signup"
-const emailUrl = "https://localhost:7066/api/auth/email"
+const signInUrl = "mvp-authservice-bdeze5hffeg7h2a0.swedencentral-01.azurewebsites.net/api/auth/signin"
+const singUpUrl = "mvp-authservice-bdeze5hffeg7h2a0.swedencentral-01.azurewebsites.net/api/auth/signup"
+const emailUrl = "mvp-authservice-bdeze5hffeg7h2a0.swedencentral-01.azurewebsites.net/api/auth/email"
 
 
 export async function signIn(user) {
