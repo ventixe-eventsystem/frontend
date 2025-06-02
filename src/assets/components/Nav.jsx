@@ -11,6 +11,8 @@ import Financials from '/src/assets/icons/financials.svg?react'
 import Gallery from '/src/assets/icons/gallery.svg?react'
 import Feedback from '/src/assets/icons/feedback.svg?react'
 import Signout from '/src/assets/icons/signout.svg?react'
+import logo from '../icons/logo.svg'
+import hamburger from '../icons/hamburger.svg'
 import { useAuth } from './AuthContext'
 import RoleGuard from './RoleGuard'
 
@@ -51,10 +53,10 @@ const Nav = () => {
   return (
     <nav>
       <div className='container-logo'>
-        <img className='nav-logo' src='/src/assets/icons/logo.svg' />
+        <img className='nav-logo' src={logo} />
         <h4>Ventixe</h4>
         <p className='show-mobile self-center-fornow'>{pageName}</p>
-        <img className='show-mobile hamburger-menu' src='src/assets/icons/hamburger.svg' onClick={toggleMenu} />
+        <img className='show-mobile hamburger-menu' src={hamburger} onClick={toggleMenu} />
       </div>
       <ul className={`nav-links ${isOpen ? 'show' : ''}`}>
         <RoleGuard roles={['Admin']} >
