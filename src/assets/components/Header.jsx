@@ -1,4 +1,3 @@
-import React from 'react'
 import '../css/header.css'
 import UserInfo from './UserInfo'
 import { useLocation } from 'react-router-dom'

@@ -1,5 +1,4 @@
-import React from 'react'
-import '../css/UserInfo.css'
+import '../css/userinfo.css'
 
 const UserInfo = () => {
   const user = JSON.parse(localStorage.getItem('user'))
