@@ -22,6 +22,11 @@ th {
   position: relative;
   text-align: left;
   padding-right: 1rem;
+  cursor: pointer;
+}
+
+th:hover {
+  background-color: var(--cool-10);
 }
 
 tr {

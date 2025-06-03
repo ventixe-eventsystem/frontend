@@ -286,8 +286,10 @@ a.active p {
   background-color: var(--gray-50);
   position: absolute;
   top: -20%;
+}
 
-  @media (width > 768px) {
+@media (width > 768px) {
+  .signout-contianer::before {
     content: unset;
   }
 }
