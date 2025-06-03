@@ -109,7 +109,7 @@ nav {
   }
 }
 
-.nav-links li.disable::after{
+.nav-links li.disable::after {
   content: "";
   background-image: url('/src/assets/icons/disable.svg');
   position: absolute;
@@ -120,10 +120,12 @@ nav {
   top: 50%;
   left: 5.75%;
   transform: translate(-50%, -50%);
-  @media (width > 768px){
+
+  @media (width >=768px) {
     left: 50%;
   }
-  @media (width > 1400px){
+
+  @media (width >=1400px) {
     left: 19%;
   }
 }
@@ -152,7 +154,7 @@ a.active::after {
   content: "";
   position: absolute;
   background-color: var(--nav-link-active);
-  left: -3.5%;
+  left: 0;
   height: 80%;
   width: 4px;
   border-radius: 0 4px 4px 0;
@@ -273,7 +275,7 @@ a.active p {
   position: absolute;
   top: -20%;
 
-  @media (width > 768px){
+  @media (width > 768px) {
     content: unset;
   }
 }
@@ -330,6 +332,6 @@ a.active p {
   color: var(--nav-link-active);
 }
 
-.notImp{
+.notImp {
   font-size: var(--title-10);
 }
