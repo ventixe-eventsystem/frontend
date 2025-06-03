@@ -138,12 +138,16 @@ nav {
 .nav-links li:hover {
   background-color: var(--nav-link-hover);
   border-radius: 6px;
+}
 
-  @media (width >=768px) {
+@media (width >=768px) {
+  .nav-links li:hover {
     border-radius: 50%;
   }
+}
 
-  @media (width >=1400px) {
+@media (width >=1400px) {
+  .nav-links li:hover {
     border-radius: 4px;
   }
 }
@@ -162,12 +166,16 @@ a.active::after {
   height: 80%;
   width: 4px;
   border-radius: 0 4px 4px 0;
+}
 
-  @media (width >=768px) {
+@media (width >=768px) {
+  a.active::after {
     background-color: unset;
   }
+}
 
-  @media (width >=1400px) {
+@media (width >=1400px) {
+  a.active::after {
     background-color: var(--nav-link-active);
     left: 0;
   }
