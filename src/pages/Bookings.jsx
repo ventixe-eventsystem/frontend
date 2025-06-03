@@ -14,10 +14,15 @@ const Bookings = () => {
   const sortFunctions = {
     date: (a, b) => new Date(a.bookingDate) - new Date(b.bookingDate),
     name: (a, b) => a.firstName.localeCompare(b.firstName),
-    event: (a, b) => a.event.localeCompare(b.event),
+    event: (a, b) => {
+      const eventA = typeof a.event === 'string' ? a.event : a.event.name
+      const eventB = typeof b.event === 'string' ? b.event : b.event.name
+      return eventA.localeCompare(eventB)
+    },
     price: (a, b) => a.amount - b.amount,
     qty: (a, b) => a.numberOfTickets - b.numberOfTickets,
-    amount: (a, b) => (a.numberOfTickets * a.amount) - (b.numberOfTickets * b.amount)
+    amount: (a, b) => (a.numberOfTickets * a.amount) - (b.numberOfTickets * b.amount),
+    location: (a, b) => a.event.location.localeCompare(b.event.location)
   }
 
   const sorted = [...bookings].sort((a, b) => {
@@ -116,7 +121,7 @@ const Bookings = () => {
             <thead>
               <tr>
                 <th onClick={() => handleSort('event')}>Event</th>
-                <th>Location</th>
+                <th onClick={() => handleSort('location')}>Location</th>
                 <th>Description</th>
                 <th onClick={() => handleSort('date')}>Date</th>
                 <th>Time</th>
@@ -125,7 +130,7 @@ const Bookings = () => {
               </tr>
             </thead>
             <tbody>
-              {bookings.length > 0 ? bookings.map(b =>
+              {bookings.length > 0 ? sorted.map(b =>
                 <tr key={b.id}>
                   <td>{b.event.name}</td>
                   <td>{b.event.location}</td>
@@ -133,7 +138,7 @@ const Bookings = () => {
                   <td>{new Date(b.event.dateAndTime).toLocaleDateString('sv-SE', { day: 'numeric', month: 'long', year: 'numeric' })}</td>
                   <td>{new Date(b.event.dateAndTime).toLocaleTimeString('sv-SE', { hour: '2-digit', minute: '2-digit' })}</td>
                   <td className='td-qty'>{b.numberOfTickets}</td>
-                  <td className='td-amount'>{b.amount} 0</td>
+                  <td className='td-amount'>${b.amount}</td>
                 </tr>
               ) : <tr><td>No bookings</td></tr>}
             </tbody>
