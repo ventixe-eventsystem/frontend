@@ -13,11 +13,13 @@ import ProtectedRoute from './assets/components/ProtectedRoute.jsx'
 import VerifyEmail from './pages/VerifyEmail.jsx'
 import Unauthorized from './pages/Unauthorized.jsx'
 import RoleBasedRedirect from './assets/components/RoleBaseRedirect.jsx'
+import CookieConsent from './assets/components/cookieConsent.jsx'
 
 function App() {
 
   return (
     <BrowserRouter>
+      <CookieConsent />
       <Routes>
         <Route path='/verify-email' element={<VerifyEmail />} />
 
