@@ -1,4 +1,5 @@
 const signInUrl = "https://mvp-authservice-bdeze5hffeg7h2a0.swedencentral-01.azurewebsites.net/api/auth/signin"
+// const signInUrl = "https://localhost:7066/api/auth/signin"
 const singUpUrl = "https://mvp-authservice-bdeze5hffeg7h2a0.swedencentral-01.azurewebsites.net/api/auth/signup"
 const emailUrl = "https://mvp-authservice-bdeze5hffeg7h2a0.swedencentral-01.azurewebsites.net/api/auth/email"
 

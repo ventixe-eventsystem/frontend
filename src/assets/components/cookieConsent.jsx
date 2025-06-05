@@ -30,8 +30,6 @@ const cookieConsent = () => {
   }
 
   const handleConfirmChoices = () => {
-
-
     localStorage.setItem('cookieConsent', JSON.stringify(consent))
     setShowCookie(false)
   }

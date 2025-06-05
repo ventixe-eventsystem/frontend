@@ -2,22 +2,38 @@ const eventUrl = "https://mvp-eventservice-d9ech9f0dba3fbfe.swedencentral-01.azu
 const packagesUrl = "https://mvp-eventservice-d9ech9f0dba3fbfe.swedencentral-01.azurewebsites.net/api/package/getallpackages"
 
 export async function getEvents() {
-  const response = await fetch(`${eventUrl}`)
+  const token = localStorage.getItem('token')
+  const response = await fetch(`${eventUrl}`, {
+    method: 'GET',
+    headers: {
+      "Content-Type": "application/json",
+      'Authorization': `Bearer ${token}`
+    }
+  })
   const data = response.json()
   return data
 }
 
 export async function getEvent(id) {
-  const response = await fetch(`${eventUrl}/${id}`)
+  const token = localStorage.getItem('token')
+  const response = await fetch(`${eventUrl}/${id}`, {
+    method: 'GET',
+    headers: {
+      "Content-Type": "application/json",
+      'Authorization': `Bearer ${token}`
+    }
+  })
   const data = response.json()
   return data
 }
 
 export async function createEvent(eventData) {
+  const token = localStorage.getItem('token')
   const response = await fetch(`${eventUrl}`, {
     method: "POST",
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
+      'Authorization': `Bearer ${token}`
     },
     body: JSON.stringify(eventData)
   })
@@ -26,13 +42,25 @@ export async function createEvent(eventData) {
 }
 
 export async function removeEvent(eventId) {
-  const response = await fetch(`${eventUrl}/${eventId}`, { method: 'DELETE' })
+  const token = localStorage.getItem('token')
+  const response = await fetch(`${eventUrl}/${eventId}`, {
+    method: 'DELETE',
+    headers: {
+      "Content-Type": "application/json",
+      'Authorization': `Bearer ${token}`
+    },
+  })
   return response.ok
 }
 
-export async function getPackages(){
+export async function getPackages() {
+  const token = localStorage.getItem('token')
   const response = await fetch(`${packagesUrl}`, {
-    method: 'GET'
+    method: 'GET',
+    headers: {
+      "Content-Type": "application/json",
+      'Authorization': `Bearer ${token}`
+    }
   })
   const data = response.json()
   return data

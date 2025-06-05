@@ -1,10 +1,13 @@
-const bookingtUrl = "https://mvp-bookingservice-fecxb3bbb8efgwhg.swedencentral-01.azurewebsites.net/api/booking"
+// const bookingUrl = "https://mvp-bookingservice-fecxb3bbb8efgwhg.swedencentral-01.azurewebsites.net/api/booking"
+const bookingUrl = "https://localhost:7110/api/booking"
 
 export async function createBooking(eventData) {
-  const response = await fetch(`${bookingtUrl}`, {
+  const token = localStorage.getItem('token')
+  const response = await fetch(`${bookingUrl}`, {
     method: "POST",
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
+      'Authorization': `Bearer ${token}`
     },
     body: JSON.stringify(eventData)
   })
@@ -13,16 +16,30 @@ export async function createBooking(eventData) {
 }
 
 export async function getAllBookings() {
-  const response = await fetch(`${bookingtUrl}`, {
-    method: "GET"
+  const token = localStorage.getItem('token')
+  const response = await fetch(`${bookingUrl}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      'Authorization': `Bearer ${token}`
+    }
   })
+
+  if (!response.ok)
+    throw new Error(`HTTP error! status: ${response.status}`);
+
   const data = await response.json()
   return data
 }
 
-export async function getBooking(id){
-  const response = await fetch(`${bookingtUrl}/${id}`,{
-    method: "GET"
+export async function getBooking(id) {
+  const token = localStorage.getItem('token')
+  const response = await fetch(`${bookingUrl}/${id}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      'Authorization': `Bearer ${token}`
+    }
   })
   const data = await response.json()
   return data
