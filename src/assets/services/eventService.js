@@ -1,67 +1,50 @@
 const eventUrl = "https://mvp-eventservice-d9ech9f0dba3fbfe.swedencentral-01.azurewebsites.net/api/events"
 const packagesUrl = "https://mvp-eventservice-d9ech9f0dba3fbfe.swedencentral-01.azurewebsites.net/api/package/getallpackages"
 
-export async function getEvents() {
+async function fetchWithAuth(url, options = {}) {
   const token = localStorage.getItem('token')
-  const response = await fetch(`${eventUrl}`, {
-    method: 'GET',
-    headers: {
-      "Content-Type": "application/json",
-      'Authorization': `Bearer ${token}`
-    }
+
+  const headers = {
+    "Content-Type": "application/json",
+    "Authorization": `Bearer ${token}`,
+    ...(options.headers || {})
+  }
+
+  const response = await fetch(url, {
+    ...options,
+    headers
   })
-  const data = response.json()
-  return data
+
+  if (!response.ok) {
+    const errorText = await response.text()
+    throw new Error(`HTTP ${response.status}: ${errorText}`)
+  }
+
+  if (response.status === 204) return null
+  return response.json()
+}
+
+export async function getEvents() {
+  return fetchWithAuth(`${eventUrl}`)
 }
 
 export async function getEvent(id) {
-  const token = localStorage.getItem('token')
-  const response = await fetch(`${eventUrl}/${id}`, {
-    method: 'GET',
-    headers: {
-      "Content-Type": "application/json",
-      'Authorization': `Bearer ${token}`
-    }
-  })
-  const data = response.json()
-  return data
+  return fetchWithAuth(`${eventUrl}/${id}`)
 }
 
 export async function createEvent(eventData) {
-  const token = localStorage.getItem('token')
-  const response = await fetch(`${eventUrl}`, {
+  return fetchWithAuth(`${eventUrl}`, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      'Authorization': `Bearer ${token}`
-    },
     body: JSON.stringify(eventData)
   })
-  if (!response.ok) throw new Error("Faild to create event")
-  return response.ok
 }
 
 export async function removeEvent(eventId) {
-  const token = localStorage.getItem('token')
-  const response = await fetch(`${eventUrl}/${eventId}`, {
-    method: 'DELETE',
-    headers: {
-      "Content-Type": "application/json",
-      'Authorization': `Bearer ${token}`
-    },
+  return fetchWithAuth(`${eventUrl}/${eventId}`, {
+    method: "DELETE"
   })
-  return response.ok
 }
 
 export async function getPackages() {
-  const token = localStorage.getItem('token')
-  const response = await fetch(`${packagesUrl}`, {
-    method: 'GET',
-    headers: {
-      "Content-Type": "application/json",
-      'Authorization': `Bearer ${token}`
-    }
-  })
-  const data = response.json()
-  return data
+  return fetchWithAuth(`${packagesUrl}`)
 }
