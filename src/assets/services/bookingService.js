@@ -1,5 +1,5 @@
-// const bookingUrl = "https://mvp-bookingservice-fecxb3bbb8efgwhg.swedencentral-01.azurewebsites.net/api/booking"
-const bookingUrl = "https://localhost:7110/api/booking"
+const bookingUrl = "https://mvp-bookingservice-fecxb3bbb8efgwhg.swedencentral-01.azurewebsites.net/api/booking"
+// const bookingUrl = "https://localhost:7110/api/booking"
 
 export async function createBooking(eventData) {
   const token = localStorage.getItem('token')
