@@ -9,7 +9,7 @@ const EventCard = ({ event, onRemove }) => {
   const ticketsLeft = () => {
     const forEvent = bookings.filter(b => b.eventId === event.id)
     const totalTickets = forEvent.reduce((total, b) => total + b.numberOfTickets, 0)
-    const remaining = Math.round(( totalTickets / event.maxAttendees) * 100)
+    const remaining = Math.round((totalTickets / event.maxAttendees) * 100)
     return remaining
   }
 
@@ -23,12 +23,12 @@ const EventCard = ({ event, onRemove }) => {
 
   return (
     <>
-      <NavLink to={`/events/${encodeURIComponent(event.id)}`}>
-        <div className='event-card' id={event.id}>
+      <div className='event-card' id={event.id}>
+        <RoleGuard roles={['Admin']}>
+          <button className="btn-remove" onClick={(e) => { e.stopPropagation(); onRemove(); }}>Remove Event</button>
+        </RoleGuard>
+        <NavLink to={`/events/${encodeURIComponent(event.id)}`}>
           <div className='event-preview'>
-            <RoleGuard roles={['Admin']}>
-              <button className="btn-remove" onClick={onRemove}>Remove Event</button>
-            </RoleGuard>
           </div>
           <div className='event-info'>
             <p className='event-date'>
@@ -44,8 +44,8 @@ const EventCard = ({ event, onRemove }) => {
               <p className='start-price'>$50</p>
             </div>
           </div>
-        </div>
-      </NavLink>
+        </NavLink>
+      </div>
     </>
   )
 }

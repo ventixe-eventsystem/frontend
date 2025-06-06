@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { createEvent, getEvents } from '../services/eventService'
 
 const AdminAddEvent = ({ onAdd }) => {
@@ -26,7 +26,7 @@ const AdminAddEvent = ({ onAdd }) => {
 
     try {
       await createEvent(newEvent)
-      onAdd(await getEvents())
+      onAdd()
       setEvent({ name: '', location: "", description: "", dateandtime: today, time: todayTime })
     }
     catch (error) {
@@ -39,17 +39,17 @@ const AdminAddEvent = ({ onAdd }) => {
       <form onSubmit={handleSubmit}>
         <h6>Add new event</h6>
         <label htmlFor="title">Title</label>
-        <input id='title' type="text" name='name' value={event.name} onChange={handleChange} />
+        <input id='title' type="text" name='name' value={event.name ?? ''} onChange={handleChange} />
         <label htmlFor="location">Location</label>
-        <input id='location' type="text" name='location' value={event.location} onChange={handleChange} />
+        <input id='location' type="text" name='location' value={event.location ?? ''} onChange={handleChange} />
         <label htmlFor="description">Description</label>
-        <input id='description' type="text" name='description' value={event.description} onChange={handleChange} />
+        <input id='description' type="text" name='description' value={event.description ?? ''} onChange={handleChange} />
         <label htmlFor="date">Date</label>
         <input id='date' type="date" name='dateandtime' value={event.dateandtime} min={today} onChange={handleChange} />
         <label htmlFor="time">Time</label>
         <input id='time' type="time" name='time' value={event.time} onChange={handleChange} />
         <label htmlFor="maxattendees">Max tickets</label>
-        <input id='maxattendes' type="number" name='maxAttendees' value={event.maxAttendees} onChange={handleChange} />
+        <input id='maxattendes' type="number" name='maxAttendees' value={event.maxAttendees ?? ''} onChange={handleChange} />
         <button type='submit'>Add</button>
       </form>
     </div>

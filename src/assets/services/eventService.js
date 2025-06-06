@@ -20,7 +20,10 @@ async function fetchWithAuth(url, options = {}) {
     throw new Error(`HTTP ${response.status}: ${errorText}`)
   }
 
-  if (response.status === 204) return null
+  if (response.status === 204 ||
+  response.headers.get("Content-Length") === "0" ||
+  !response.headers.get("Content-Type")?.includes("application/json")) return null
+  
   return response.json()
 }
 

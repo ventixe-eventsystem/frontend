@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import  { useEffect, useState } from 'react'
 import '../assets/css/events.css'
 import EventCard from '../assets/components/EventCard'
 import AddEvent from '../assets/components/AdminAddEvent'
@@ -8,15 +8,24 @@ import RoleGuard from '../assets/components/RoleGuard'
 const Events = () => {
   const [events, setEvents] = useState([])
 
+  const fetchEvents = async () => {
+    try {
+      const result = await getEvents()
+      setEvents(result)
+    }
+    catch (error){
+      console.log(error)
+    }
+  }
+
   useEffect(() => {
-    if(!events) return
-    getEvents().then(setEvents).catch(console.error)
+    fetchEvents()
   }, [])
   
   const handleRemove = async (id) => {
     try {
       await removeEvent(id)
-      getEvents().then(setEvents).catch(console.error)
+      fetchEvents()
     }
     catch (error) {
       console.log('Failed to remove event:', error)
@@ -29,7 +38,7 @@ const Events = () => {
     <div className='events'>
       <div className='events-options'>
         <RoleGuard roles={["Admin"]}>
-          <AddEvent onAdd={newEvents => setEvents(newEvents)} />
+          <AddEvent onAdd={fetchEvents} />
         </RoleGuard>
         <input className='search-event' type='text' />
         <button>Active (?)</button>

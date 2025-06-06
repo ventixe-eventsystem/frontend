@@ -69,3 +69,8 @@
   font-size: var(--title-18);
   font-weight: 600;
 }
+
+.btn-remove {
+  position: absolute;
+  cursor: pointer;
+}
