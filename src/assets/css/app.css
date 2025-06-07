@@ -82,6 +82,7 @@
        --bg-packages: var(--gray-10);
        --bg-packages-li: var(--gray-20);
        --bg-event-details: var(--gray-10);
+       --bg-booking: var(--gray-10);
        --bg-confirm-message: var(--gray-20);
        --bg-signin-form: var(--gray-10);
        --bg-widget: var(--gray-10);

@@ -26,7 +26,7 @@ const Packages = ({ eventName}) => {
       <ul className='packages-ul'>
         {packages.length > 0 ? packages.map(p =>
           <li key={p.id} className='packages-li'>
-            <Link to={`/event/${encodeURIComponent(eventName.id)}?package=${p.id}`}>
+            <Link to={`/event/details/booking/${encodeURIComponent(eventName.id)}?package=${p.id}`}>
               <div className='li-flex'>
                 <p>{p.name}</p>
                 <span>{p.price}</span>

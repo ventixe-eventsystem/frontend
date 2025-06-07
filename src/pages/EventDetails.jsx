@@ -44,7 +44,7 @@ const Event = () => {
 
           <div className='details-line'></div>
           <div className='details-price'>
-            <NavLink to={`/event/${encodeURIComponent(event.id)}?package=1`} className={btn.primary}>Book</NavLink>
+            <NavLink to={`/event/details/booking/${encodeURIComponent(event.id)}?package=1`} className={btn.primary}>Book</NavLink>
             <div className="price-container">
               <p className='price-text'>Starts from</p>
               <h6 className='amount'>${event.amount}40</h6>

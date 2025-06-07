@@ -5,6 +5,7 @@ import { getEvent, getPackages } from '../assets/services/eventService'
 import { createBooking } from '../assets/services/bookingService'
 import { useAuth } from '../assets/components/AuthContext'
 import ConfirmMessage from '../assets/components/ConfirmMessage'
+import btn from '../assets/css/buttons.module.css'
 
 const EventBooking = () => {
   const { eventId } = useParams()
@@ -23,6 +24,21 @@ const EventBooking = () => {
     numberOfTickets: 1,
     amount: ''
   })
+  const [tickets, setTickets] = useState(formData.numberOfTickets || 1)
+
+  const increase = () => {
+    const newValue = tickets + 1
+    setTickets(newValue)
+    handleChange({ target: { name: 'numberOfTickets', value: newValue } })
+  }
+
+  const decrease = () => {
+    if (tickets > 1) {
+      const newValue = tickets - 1
+      setTickets(newValue)
+      handleChange({ target: { name: 'numberOfTickets', value: newValue } })
+    }
+  }
 
   const fetchPackage = async () => {
     const result = await getPackages()
@@ -81,33 +97,34 @@ const EventBooking = () => {
 
   return (
     <div className='eventbooking-container'>
-      <h6>Book event - {event.name}</h6>
-      <div>
-        <form onSubmit={handleSubmit}>
-          <div>
-            <input name='id' type="hidden" readOnly value={event.id || ''} />
-            <input name='user-id' type="hidden" readOnly value={formData.userId} />
-            <p>{selectedPackage.name} - ${selectedPackage.price}</p>
-            <input name='amount' type="hidden" defaultValue={selectedPackage.price} readOnly />
-            <div>
-              <input type="number" name='numberOfTickets' defaultValue={formData.numberOfTickets} onChange={handleChange} />
-              <button type='button'>+</button>
-              <button type='button'>-</button>
+      <div className='eventbooking'>
+        <h6>Book event - {event.name}</h6>
+        <form className='booking-form' onSubmit={handleSubmit}>
+          <input name='id' type="hidden" readOnly value={event.id || ''} />
+          <input name='user-id' type="hidden" readOnly value={formData.userId} />
+          <p>{selectedPackage.name} - ${selectedPackage.price}</p>
+          <input name='amount' type="hidden" defaultValue={selectedPackage.price} readOnly />
+          <div className='group'>
+            <label htmlFor="number">Number of tikets</label>
+            <input id='number' type="number" name='numberOfTickets' value={tickets} min={1} disabled onChange={handleChange} />
+            <div className='group-flex'>
+              <button className={btn.primary} type='button' onClick={increase}>+</button>
+              <button className={btn.primary} type='button' onClick={decrease}>-</button>
             </div>
           </div>
-          <div>
+          <div className='group'>
             <label htmlFor='firstName'>First Name</label>
             <input id='firstName' name='firstName' type="text" value={formData.firstName} onChange={handleChange} />
           </div>
-          <div>
+          <div className='group'>
             <label htmlFor='lastName'>Last Name</label>
             <input id='lastName' name='lastName' type="text" value={formData.lastName} onChange={handleChange} />
           </div>
-          <div>
+          <div className='group'>
             <label htmlFor='email'>Email</label>
             <input id='email' name='email' type="text" value={formData.email} onChange={handleChange} />
           </div>
-          <button type='submit'>Confirm</button>
+          <button className={btn.primary} type='submit'>Confirm</button>
         </form>
       </div>
 

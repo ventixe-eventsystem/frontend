@@ -38,8 +38,8 @@ function App() {
             </ProtectedRoute>} />
           <Route path='/bookings' element={<Bookings />} />
           <Route path='/events' element={<Events />} />
-          <Route path='/events/:eventId' element={<EventDetails />} />
-          <Route path='/event/:eventId' element={<EventBooking />} />
+          <Route path='/event/details/:eventId' element={<EventDetails />} />
+          <Route path='/event/details/booking/:eventId' element={<EventBooking />} />
           <Route path='/unauthorized' element={<Unauthorized />} />
         </Route>
       </Routes>

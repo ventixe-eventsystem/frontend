@@ -22,8 +22,10 @@ const Nav = () => {
   const { setUser } = useAuth()
   const navigate = useNavigate()
 
-  const location = useLocation().pathname.replace('/', '')
-  const pageName = location ? location.charAt(0).toUpperCase() + location.slice(1) : ""
+  const location = useLocation()
+  const segment = location.pathname.split('/').filter(Boolean)
+  const pageName = segment[segment.length - 1] || 'Dashboard'
+  const formattedPageName = pageName.charAt(0).toUpperCase() + pageName.slice(1)
 
   const handleSignOut = () => {
     localStorage.removeItem('token')
@@ -55,7 +57,7 @@ const Nav = () => {
       <div className='container-logo'>
         <img className='nav-logo' src={logo} />
         <h4>Ventixe</h4>
-        <p className='show-mobile self-center-fornow'>{pageName}</p>
+        <p className='show-mobile self-center-fornow'>{formattedPageName}</p>
         <img className='show-mobile hamburger-menu' src={hamburger} onClick={toggleMenu} />
       </div>
       <ul className={`nav-links ${isOpen ? 'show' : ''}`}>

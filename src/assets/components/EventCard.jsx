@@ -27,7 +27,7 @@ const EventCard = ({ event, onRemove }) => {
         <RoleGuard roles={['Admin']}>
           <button className="btn-remove" onClick={(e) => { e.stopPropagation(); onRemove(); }}>Remove Event</button>
         </RoleGuard>
-        <NavLink to={`/events/${encodeURIComponent(event.id)}`}>
+        <NavLink to={`/event/details/${encodeURIComponent(event.id)}`}>
           <div className='event-preview'>
           </div>
           <div className='event-info'>

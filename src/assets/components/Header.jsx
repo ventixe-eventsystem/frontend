@@ -6,19 +6,28 @@ import Notification from '/src/assets/icons/notification.svg?react'
 import Settings from '/src/assets/icons/settings.svg?react'
 
 const header = () => {
-  const location = useLocation().pathname.replace('/', '')
-  const pageName = location ? location.charAt(0).toUpperCase() + location.slice(1) : ""
-  const user = JSON.parse(localStorage.getItem('user'))
 
+  const location = useLocation()
+  const segment = location.pathname.split('/').filter(Boolean)
+  const pageName = segment[segment.length - 1] || 'Dashboard'
+  const formattedPageName = pageName.charAt(0).toUpperCase() + pageName.slice(1)
+
+  const breadcrumb = segment.length > 0
+    ? [...segment.map(segment => segment.charAt(0).toUpperCase() + segment.slice(1))].join(' / ')
+    : 'Dashboard'
+
+  const user = JSON.parse(localStorage.getItem('user'))
+  const showBreadCrumb = segment.length > 1
+  const isOnDashBoard = pageName.toLocaleLowerCase() === 'dashboard'
 
   return (
     <header>
       <div className='page-title'>
-        {(pageName !== 'Dashboard') &&
-          <p style={{ fontSize: 'var(--title-11)' }}>BreedCrum</p>
+        {showBreadCrumb &&
+          <p style={{ fontSize: 'var(--title-11)' }}>{breadcrumb}</p>
         }
-        <h4>{pageName}</h4>
-        {(pageName === 'Dashboard') &&
+        <h4>{formattedPageName}</h4>
+        {(isOnDashBoard) &&
           <p className='user-greating'>Hello {user.firstName} {user.lastName}, welcome back!</p>
         }
       </div>
