@@ -11,7 +11,7 @@ const VerifyEmail = () => {
 
     const verify = async () => {
       try {
-        const response = await fetch(`https://localhost:7066/api/auth/verify-email?token=${encodeURIComponent(token)}&email=${encodeURIComponent(email)}`)
+        const response = await fetch(`https://ashy-flower-0c2a64603.6.azurestaticapps.net/api/auth/verify-email?token=${encodeURIComponent(token)}&email=${encodeURIComponent(email)}`)
         if (response.ok) {
           setMessage("Email verified! You can now log in.")
         } else {
