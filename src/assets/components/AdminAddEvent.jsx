@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { createEvent } from '../services/eventService'
-import '../css/AdminAddEvent.css'
+import '../css/adminAddEvent.css'
 import btn from '../css/buttons.module.css'
 
 const AdminAddEvent = ({ onAdd }) => {
