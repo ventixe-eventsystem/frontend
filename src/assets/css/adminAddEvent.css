@@ -15,7 +15,7 @@
 
 @media (width > 768px) {
   .formAddEvent {
-    grid-template-columns: auto auto;
+    grid-template-columns: auto auto ;
   }
 }
 
