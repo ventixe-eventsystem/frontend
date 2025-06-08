@@ -1,0 +1,39 @@
+.addevent-header {
+  text-wrap: nowrap;
+  cursor: pointer;
+}
+.addevent-header:hover {
+  color: var(--primary-100);
+}
+.formAddEvent {
+  display: grid;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .5s ease-in-out, padding .2s ease-in-out;
+  gap: .5rem;
+}
+
+@media (width > 768px) {
+  .formAddEvent {
+    grid-template-columns: auto auto;
+  }
+}
+
+
+.formAddEvent.show {
+  max-height: 50rem;
+  padding-top: 1rem;
+}
+
+.extra-space {
+  margin-top: .5rem;
+}
+
+.group-of-groups{
+  display: flex;
+  gap: 2rem;
+}
+
+#maxattendes {
+  width: 4rem;
+}

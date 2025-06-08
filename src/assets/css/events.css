@@ -19,9 +19,10 @@
 .events-options{
   display: grid;
   width: 334px;
-  grid-template-columns: repeat(3, 1fr);
+  width: 100%;
+  /* grid-template-columns: repeat(3, 1fr); */
   row-gap: .75rem;
-  margin-inline: auto;
+  /* margin-inline: auto; */
   padding-top: 1rem;
   grid-area: events-options;
 }

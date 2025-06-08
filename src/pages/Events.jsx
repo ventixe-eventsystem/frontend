@@ -41,9 +41,11 @@ const Events = () => {
           <AddEvent onAdd={fetchEvents} />
         </RoleGuard>
         <input className='search-event' type='text' />
-        <button>Active (?)</button>
-        <button>Draft (?)</button>
-        <button>Past (?)</button>
+        <div>
+          <button>Active (?)</button>
+          <button>Draft (?)</button>
+          <button>Past (?)</button>
+        </div>
       </div>
       {events.length > 0
         ? events.map(e => <EventCard key={e.id} event={e} onRemove={() => handleRemove(e.id)} />)
