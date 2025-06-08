@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react"
+import { use, useEffect, useState } from "react"
 import { useSearchParams } from "react-router-dom"
 
 const VerifyEmail = () => {
   const [searchParams] = useSearchParams()
   const [message, setMessage] = useState("Verifying...")
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const token = searchParams.get("token")
@@ -20,12 +21,26 @@ const VerifyEmail = () => {
       } catch (err) {
         setMessage("An error occurred.")
       }
+      finally {
+        setLoading(false)
+      }
     }
 
     verify()
   }, [searchParams])
 
-  return <p>{message}</p>
+  return (
+    <div style={{ textAlign: "center", marginTop: "3rem" }}>
+      {loading ? (
+        <>
+          <div className="spinner" />
+          <p>{message}</p>
+        </>
+      ) : (
+        <p>{message}</p>
+      )}
+    </div>
+  )
 }
 
 export default VerifyEmail

@@ -14,9 +14,11 @@ const SignUp = () => {
   const [formData, setFormData] = useState({
     email: '', password: '', firstName: '', lastName: ''
   });
+  const [isLoading, setIsLoading] = useState(false)
 
   const handleNext = async (e) => {
     if (Object.values(formData).every(value => value !== '')) {
+      setIsLoading(true)
       const res = await signUp(formData)
       setStep(3)
     }
@@ -29,8 +31,7 @@ const SignUp = () => {
     if (res) {
       setIsValid(res)
     }
-    else
-    {
+    else {
       setIsValid(false)
       setError({ email: 'Alredy registerd' })
     }
@@ -85,14 +86,20 @@ const SignUp = () => {
           {step === 2 &&
             <div className='form-group'>
               <h4>Step 2: Profile</h4>
-              <div className='group'>
-                <label htmlFor='firstName'>First name</label>
-                <input id='firstName' type="text" name='firstName' className="group-input" onChange={handleChange} />
-              </div>
-              <div className='group'>
-                <label htmlFor='lastName'>Last name</label>
-                <input id='lastName' type="text" name='lastName' className="group-input" onChange={handleChange} />
-              </div>
+              {isLoading ? (
+                <div className='spinner' />
+              ) : (
+                <>
+                  <div className='group'>
+                    <label htmlFor='firstName'>First name</label>
+                    <input id='firstName' type="text" name='firstName' className="group-input" onChange={handleChange} />
+                  </div>
+                  <div className='group'>
+                    <label htmlFor='lastName'>Last name</label>
+                    <input id='lastName' type="text" name='lastName' className="group-input" onChange={handleChange} />
+                  </div>
+                </>
+              )}
               <button type='button' className={`${btn.primary}`} onClick={handleNext}>Next</button>
             </div>
           }
